@@ -1,6 +1,5 @@
 package com.ztest.sc.business.product.resources;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.ztest.sc.business.product.feign.UserApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +21,9 @@ public class ProductResource {
     @Autowired
     private UserApi userApi;
 
-    @HystrixCommand(fallbackMethod = "fallback")
     @GetMapping("/products/rest/{id}")
     public String getProductByRest(@PathVariable Long id) {
-        return restTemplate.getForObject("http://USER/users/1", String.class);
+        return restTemplate.getForObject("http://user/users/1", String.class);
     }
 
     @GetMapping("/products/feign/{id}")
@@ -33,8 +31,5 @@ public class ProductResource {
         return userApi.getUser(id);
     }
 
-    private String fallback(Long id) {
-        return "Hystrix fallback!";
-    }
 
 }

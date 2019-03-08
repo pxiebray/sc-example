@@ -2,6 +2,7 @@ package com.ztest.sc.business.user.resources;
 
 import com.ztest.sc.business.user.vo.UserInfo;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,16 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
  * @data 2018/8/14 0014 59
  */
 @RestController
+@RefreshScope
 public class UserResource {
 
-    @Value("${hello}")
+    @Value("${hello:default}")
     private String helloValue;
 
     @Value("${server.port}")
     private String instancePort;
 
     @GetMapping
-    public String home(@PathVariable Long id) {
+    public String home() {
         return "hello " + helloValue;
     }
 
