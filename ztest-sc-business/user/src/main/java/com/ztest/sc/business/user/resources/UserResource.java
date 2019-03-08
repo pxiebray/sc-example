@@ -14,11 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserResource {
 
-    @Value("${instance.name}")
-    private String instanceName;
+    @Value("${hello}")
+    private String helloValue;
+
+    @Value("${server.port}")
+    private String instancePort;
+
+    @GetMapping
+    public String home(@PathVariable Long id) {
+        return "hello " + helloValue;
+    }
 
     @GetMapping("/users/{id}")
     public UserInfo getUser(@PathVariable Long id) {
-        return new UserInfo(id, instanceName, "", "");
+        return new UserInfo(id, instancePort, "", "");
     }
 }

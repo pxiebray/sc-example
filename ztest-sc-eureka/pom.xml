@@ -32,7 +32,7 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!--暂时将SBA和eureka放在一起spring cloud迁移时再分开-->
+        <!--暂时将SBA和eureka放在一起-->
         <dependency>
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-starter-server</artifactId>
